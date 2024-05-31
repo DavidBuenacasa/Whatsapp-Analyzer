@@ -1,0 +1,69 @@
+<div class="inicio">
+
+    <!-- 
+  
+      BUTTON DARK MODE
+  
+    <div class="mode-container">
+      <div class="mode">
+        <button id="button-mode" (click)="cambiarMode()">
+          <img src="assets/icons/light-mode.png" class="icon-mode">
+        </button>
+      </div>
+    </div>  
+  -->
+  
+    <div class="container" id="objects">
+      <div id="logo-container" class="row">
+        <div class="col align-content-center">
+          <div id="whatsapp-text">
+            <p>
+              WhatsApp
+            </p>
+          </div>
+          <div id="analyzer-text">
+            <p>
+              Analyzer
+            </p>
+          </div>
+        </div>
+        <div class="col align-content-center">
+          <img src="assets/icons/WhatsApp.svg" id="icon-whatsapp">
+        </div>
+      </div>
+  
+      <div id="container-file">
+        <label class="form-label" for="customFile">Seleciona un archivo .txt para analizar</label>
+        <input type="file" class="form-control" id="customFile" (change)="onChange($event)" #fileUpload/>
+      </div>
+  
+  
+      <div class="container-button mt-4">
+        <div class="wrapper">
+          <input type="radio" name="select" id="option-1" checked value="iphone">
+          <input type="radio" name="select" id="option-2" value="android">
+          <label for="option-1" class="option option-1">
+            <div class="dot"></div>
+            <span>IPHONE</span>
+          </label>
+          <label for="option-2" class="option option-2">
+            <div class="dot"></div>
+            <span>ANDROID</span>
+          </label>
+        </div>
+      </div>
+  
+      <div class="flex-grid-center">
+        <div class="pure-button fuller-button blue" (click)="analizar()">Analizar</div>
+      </div>
+  
+    </div>
+  
+    <div id="particles-js" class="background container-fluid">
+
+    </div>
+  </div>
+
+
+
+

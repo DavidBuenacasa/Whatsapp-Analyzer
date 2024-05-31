@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+
+div{
+    border: black 1px;
+}
+
+#div{
+    display: flex;
+    flex-direction: column;
+}
+
+#graficos-container{
+    background-color: rgb(34, 121, 197);
+
+    height: 50vh;
+
+}
+
+#table-container{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    background-color: rgb(34, 197, 42);
+    height: 50vh;
+}
+
+.tabla{
+    background-color: blue;
+    width: 80vh;
+}

@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+
+import { ChangeDetectorRef, Component } from '@angular/core';
+import {LayoutModule, } from '@angular/cdk/layout';
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,18 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'whatsappAnalyzer';
+  tittle = "tsparticles";
+
+
+  constructor(){
+
+  }
+
+  ngOnInit(): void {
+
+  }
+
+
+
+
 }
