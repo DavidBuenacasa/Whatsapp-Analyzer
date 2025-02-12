@@ -1,0 +1,9 @@
+{
+    "main-title":"Whastsapp Analyzer",
+    "input-file-label":"Seleccione un archivo",
+    "radioButton-device":"Desde que dispositivo utilizas Whastsapp",
+    "errors":{
+        "extension-error":"La extension es incorrecta, el archivo debe tener una extension '.txt'",
+        "no-radioButton-selected":"No se ha seleccionado ningun dispositivo"
+    }
+}
