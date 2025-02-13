@@ -26,7 +26,7 @@ class RegistroIphone {
   }
 
   getFechaHora() {
-    const regex = /\[(\d{1,2}\/\d{1,2}\/\d{2,4}), (\d{2}:\d{2}:\d{2})\]/;
+    const regex = /\[(\d{1,2}\/\d{1,2}\/\d{2,4}), (\d{1,2}:\d{2}:\d{2})\]/;
     const coincidencia = this.linea.match(regex);
     const fechaHora: FechaHora = { fecha: "", hora: "" };
     if (coincidencia) {
