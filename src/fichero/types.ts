@@ -19,6 +19,16 @@ export interface Año{
   diciembre:MensajesType
 }
 
+export interface MensajesType{
+  mensajesTexto:number,
+  mensajesAudio:number,
+  fotos:number,
+  videos:number,
+  stickers:number,
+  gifs:number,
+  multimediaOmitido:number
+}
+
 export const mesesMap: { [key: number]: string } = {
   1: "enero",
   2: "febrero",
@@ -34,15 +44,7 @@ export const mesesMap: { [key: number]: string } = {
   12: "diciembre"
 };
 
-export interface MensajesType{
-  mensajesTexto:0,
-  mensajesAudio:0,
-  fotos:0,
-  videos:0,
-  stickers:0,
-  gifs:0,
-  multimediaOmitido:0
-}
+
   
 export interface FechaHora {
     fecha: string;

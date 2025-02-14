@@ -9,6 +9,7 @@ class RegistroIphone {
     this.linea=linea;
   }
 
+  //Devuelve La persona del Registro
   getPersona() {
     const splitLinea = this.linea.split(" ")[2];
 
@@ -17,6 +18,7 @@ class RegistroIphone {
     return persona;
   }
 
+  //Devuelve el mensaje del Registro
   getMensaje() {
     const splitLinea = this.linea.split(":")[3];
 
@@ -25,6 +27,7 @@ class RegistroIphone {
     return mensaje;
   }
 
+  //Devuelve La fecha y la hora del registro
   getFechaHora() {
     const regex = /\[(\d{1,2}\/\d{1,2}\/\d{2,4}), (\d{1,2}:\d{2}:\d{2})\]/;
     const coincidencia = this.linea.match(regex);
