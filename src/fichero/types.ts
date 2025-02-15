@@ -1,10 +1,12 @@
-export interface Persona {
-    nombre: string;
-    mensajes: Año[];
+/* eslint-disable @typescript-eslint/ban-types */
+
+export interface Registro{
+  nombre:string,
+  año:string,
+  mensajes:Meses[]
 }
 
-export interface Año{
-  año:string,
+export interface Meses{
   enero:MensajesType,
   febrero:MensajesType,
   marzo:MensajesType,
@@ -18,6 +20,7 @@ export interface Año{
   noviembre:MensajesType,
   diciembre:MensajesType
 }
+
 
 export interface MensajesType{
   mensajesTexto:number,
@@ -43,11 +46,24 @@ export const mesesMap: { [key: number]: string } = {
   11: "noviembre",
   12: "diciembre"
 };
-
-
   
 export interface FechaHora {
     fecha: string;
     hora: string;
   }
 
+
+
+// Definir el tipo de dato principal que contiene dataKeys y data
+export interface DataStructureByYear {
+  dataKeys: {
+    key:string,
+    persona1:string,
+    persona2:string
+  };
+  data: {
+    year: string;
+    persona1:number,
+    persona2:number,
+  }[];
+}

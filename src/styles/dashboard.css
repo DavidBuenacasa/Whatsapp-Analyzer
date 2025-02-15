@@ -1,0 +1,13 @@
+#cuerpoGraficos{
+    display: grid;
+
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.grafico{
+    display: block;
+    margin: 20px;
+    border: 1px solid black;
+}

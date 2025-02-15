@@ -1,22 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import RegistroIphone from "./registroIphone";
-import { Año, FechaHora, Persona, MensajesType, mesesMap } from "./types";
+import {
+  FechaHora,
+  MensajesType,
+  mesesMap,
+  Registro,
+  Meses,
+} from "./types";
 
 class Stats {
   private fichero: File | null;
   private dispositivo: string;
-  private stats: Persona[];
+  private stats: Registro[];
   private ficheroLeido;
 
   constructor(fichero: File | null, dispositivo: string) {
     this.fichero = fichero;
     this.dispositivo = dispositivo;
     this.stats = [];
-    this.ficheroLeido=false;
+    this.ficheroLeido = false;
   }
 
-   async analizar() {
+  async analizar() {
     //Se lee el fichero
     await this.leerFichero();
   }
@@ -28,7 +34,7 @@ class Stats {
       reader.onloadend = () => {
         this.ficheroLeido = true;
         resolve();
-      }
+      };
 
       reader.onload = (e) => {
         let text = e.target?.result as string;
@@ -50,13 +56,15 @@ class Stats {
               const personaRegistro = registroIphone.getPersona();
               const mensajeRegistro = registroIphone.getMensaje();
               const fechaHoraRegistro = registroIphone.getFechaHora();
+              const año = fechaHoraRegistro.fecha.split("/")[2];
 
               const añadirPersona = this.stats.some(
-                (persona) => persona.nombre === personaRegistro,
+                (persona) =>
+                  persona.nombre === personaRegistro && persona.año === año,
               );
 
               if (!añadirPersona) {
-                this.añadirPersona(personaRegistro);
+                this.añadirPersona(personaRegistro, año);
               }
 
               this.clasificarMensaje(
@@ -82,8 +90,8 @@ class Stats {
       if (this.fichero) {
         reader.readAsText(this.fichero, "utf-8");
       } else {
-        console.error('No se ha definido ningún archivo para leer.');
-        reject(new Error('No se ha definido ningún archivo para leer.'));
+        console.error("No se ha definido ningún archivo para leer.");
+        reject(new Error("No se ha definido ningún archivo para leer."));
       }
     });
   }
@@ -93,11 +101,12 @@ class Stats {
   }
 
   //Se añade una persona al Array de Stats
-  private añadirPersona(personaNombre: string) {
+  private añadirPersona(personaNombre: string, año: string) {
     //Se crea un objeto persona con su nombre
-    const personaObjeto: Persona = {
+    const personaObjeto: Registro = {
       nombre: personaNombre,
-      mensajes: [] as Año[],
+      año: año,
+      mensajes: [this.añadirMeses()],
     };
     //Se añade al array
     this.stats.push(personaObjeto);
@@ -116,51 +125,45 @@ class Stats {
     const mesRegistro = this.numeroAMes(Number(mesAux));
     const diaRegistro = fechaHora.fecha.split("/")[0];
 
-    let mesData: MensajesType = this.crearMensajesType();
-
-    //Recuperamos el Array de la persona que ha enviado el mensaje
-    const dataPersona = this.recuperarDataPersona(persona);
-
-    //Si en ese array se encuentra el año del mensaje devuelve true, si no se encuentra devuelve false
-    const añoInicializado = dataPersona?.mensajes.some(
-      (año) => año.año == añoRegistro,
+    const aux = this.stats.find(
+      (registro) => registro.año === añoRegistro && registro.nombre === persona,
     );
 
-    //Si no se encuentra se añade un objeto año a esa persona
-    if (!añoInicializado) {
-      this.añadirMeses(persona, añoRegistro);
-    }
+    aux?.mensajes.map((año) => {
+      let mensajesData;
 
-    //Recuperamos el array del año de esa persona
-    const dataAño = this.recuperarAño(persona, añoRegistro);
-    if (dataAño) {
-      mesData = dataAño[mesRegistro as keyof Año] as MensajesType;
-    }
+      if (mesRegistro) {
+        mensajesData = año[mesRegistro as keyof Meses];
 
-    //Normalizamos el mensaje para evitar espacios en blanco o mayusculas no deseadas
-    const mensajeNormalizado = mensajeRegistro.trim().toLowerCase().valueOf();
+        //Normalizamos el mensaje para evitar espacios en blanco o mayusculas no deseadas
+        const mensajeNormalizado = mensajeRegistro
+          .trim()
+          .toLowerCase()
+          .valueOf();
 
-    //Se identifica el tipo de mensaje y se suma 1 al array
-    switch (mensajeNormalizado) {
-      case "sticker omitido":
-        mesData.stickers += 1;
-        break;
-      case "audio omitido":
-        mesData.mensajesAudio += 1;
-        break;
-      case "Video omitido":
-        mesData.videos += 1;
-        break;
-      case "imagen omitida":
-        mesData.fotos += 1;
-        break;
-      case "gif omitido":
-        mesData.gifs += 1;
-        break;
-      default:
-        mesData.mensajesTexto += 1;
-        break;
-    }
+        //Se identifica el tipo de mensaje y se suma 1 al array
+        switch (mensajeNormalizado) {
+          case "sticker omitido":
+            mensajesData.stickers += 1;
+            break;
+          case "audio omitido":
+            mensajesData.mensajesAudio += 1;
+            break;
+          case "Video omitido":
+            mensajesData.videos += 1;
+            break;
+          case "imagen omitida":
+            mensajesData.fotos += 1;
+            break;
+          case "gif omitido":
+            mensajesData.gifs += 1;
+            break;
+          default:
+            mensajesData.mensajesTexto += 1;
+            break;
+        }
+      }
+    });
   }
 
   //Crea una instancia de MensajeType en blanco
@@ -175,9 +178,8 @@ class Stats {
   });
 
   //Crea un objeto Año con los meses y dentro de ellos la estructura de MensajeType
-  private añadirMeses(persona: string, año: string) {
-    const añoData: Año = {
-      año: año,
+  private añadirMeses() {
+    const añoData: Meses = {
       enero: this.crearMensajesType(),
       febrero: this.crearMensajesType(),
       marzo: this.crearMensajesType(),
@@ -191,27 +193,9 @@ class Stats {
       noviembre: this.crearMensajesType(),
       diciembre: this.crearMensajesType(),
     };
-
-    const data = this.recuperarDataPersona(persona);
-    data?.mensajes.push(añoData);
+    return añoData;
   }
 
-  //Recupera el array de una persona
-  private recuperarDataPersona(persona: string) {
-    const data = this.stats.find(
-      (personaData) => personaData.nombre == persona,
-    );
-    return data;
-  }
-
-  //Recupera el array año de una persona
-  private recuperarAño(persona: string, año: string) {
-    const dataPersona = this.recuperarDataPersona(persona);
-
-    const dataAño = dataPersona?.mensajes.find((añoData) => añoData.año == año);
-
-    return dataAño;
-  }
 
   //Devuelve el nombre de un mes a partir de su numero de mes
   private numeroAMes(numero: number): string | undefined {
@@ -219,7 +203,6 @@ class Stats {
   }
 
   public obtenerData() {
-
     return JSON.stringify(this.stats);
   }
 }
