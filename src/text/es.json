@@ -1,11 +1,43 @@
 {
-    "main-title":"Whastsapp Analyzer",
+    "main-title":"Whastsapp",
+    "span-title":"Analyzer",
     "input-file-label":"Seleccione un archivo",
     "radioButton-device":"Desde que dispositivo utilizas Whastsapp",
     "SelectYear":"Selecciona un Año:",
     "SelectYearPlaceholder":"Años",
+    "totalSelect":"Total",
+    "SelectPersona":"Selecciona una persona",
     "errors":{
         "extension-error":"La extension es incorrecta, el archivo debe tener una extension '.txt'",
         "no-radioButton-selected":"No se ha seleccionado ningun dispositivo"
+    },
+    "tabla":{
+        
+            "filas": {
+              "enero": "Enero",
+              "febrero": "Febrero",
+              "marzo": "Marzo",
+              "abril": "Abril",
+              "mayo": "Mayo",
+              "junio": "Junio",
+              "julio": "Julio",
+              "agosto": "Agosto",
+              "septiembre": "Septiembre",
+              "octubre": "Octubre",
+              "noviembre": "Noviembre",
+              "diciembre": "Diciembre"
+            },
+        "columnas":{
+            "mes":"Mes",
+            "mensajesTexto":"Mensajes de Texto",
+            "fotos":"Fotos",
+            "videos":"Videos",
+            "audios":"Audios",
+            "stickers":"Stickers",
+            "gifs":"Gifs",
+            "multimedia-omiitdo":"Multimedia Omitido"
+        }
     }
+
+    
 }

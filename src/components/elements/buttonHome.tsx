@@ -5,7 +5,7 @@ const ButtonHome: React.FC = () => {
     const navigate = useNavigate();
 
     function returnHome(){
-        navigate("/home");
+        navigate("/");
     }
 
 

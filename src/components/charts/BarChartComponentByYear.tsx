@@ -1,5 +1,5 @@
 import React from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 import { DataStructureByYear } from "../../fichero/types";
 
 
@@ -11,7 +11,7 @@ interface BarChartComponentByYear {
 const BarChartComponentByYear: React.FC<BarChartComponentByYear> = ({ data }) => (
   <BarChart data={data.data} width={500} height={300}>
   <CartesianGrid strokeDasharray="3 3" />
-  <XAxis dataKey={data.dataKeys.key}/>
+  <XAxis dataKey="name"/>
   <YAxis />
   <Tooltip />
   <Legend />

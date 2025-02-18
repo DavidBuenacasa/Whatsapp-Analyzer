@@ -32,7 +32,7 @@ export interface MensajesType{
   multimediaOmitido:number
 }
 
-export const mesesMap: { [key: number]: string } = {
+export const mesesMap: { [key: number]: keyof Meses } = {
   1: "enero",
   2: "febrero",
   3: "marzo",
@@ -62,8 +62,15 @@ export interface DataStructureByYear {
     persona2:string
   };
   data: {
-    year: string;
+    keyData: string,
+    name:string
     persona1:number,
     persona2:number,
   }[];
+}
+
+
+export interface DataPieChart{
+  name:string,
+  value:number
 }

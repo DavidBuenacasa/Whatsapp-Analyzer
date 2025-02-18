@@ -46,7 +46,7 @@ const RadioButtonComponent = forwardRef<RadioButtonComponentHandle>(
 
     return (
       <div>
-        <h3 className="mb-5 text-lg font-medium text-gray-900 dark:text-white">
+        <h3 className="mb-5 text-xl font-medium text-gray-900 dark:text-white">
           {es_text["radioButton-device"]}
         </h3>
         <ul className="grid w-full items-center justify-center gap-6 md:grid-cols-2">

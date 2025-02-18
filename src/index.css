@@ -15,43 +15,6 @@ header {
   padding: 10px;
 }
 
-h1 {
-  font-size: 60px;
-  font-family: "Helvetica";
-}
+label{
 
-#logo-whatsapp {
-  width: 150px;
-}
-
-.titulo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  padding: 30px;
-  padding-top: 0px;
-}
-
-span {
-  margin: 20px;
-}
-
-.device-div{
-    max-width: 200px;
-}
-
-@media (max-width: 600px) {
-    .titulo{
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    #logo-whatsapp{
-        width: 100px;
-    }
-    h1 {
-        font-size: 50px;
-        font-family: "Helvetica";
-      }
 }

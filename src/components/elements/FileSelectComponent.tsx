@@ -46,8 +46,8 @@ const FileSelectComponent = forwardRef<FileSelectComponentHandle>((_, ref) => {
   }));
 
   return (
-    <div className="mb-2">
-      <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+    <div className="mb-10">
+      <label className="mb-2 block text-xl font-medium text-gray-900 dark:text-white">
         {es_text["input-file-label"]}
       </label>
       <input

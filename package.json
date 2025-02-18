@@ -14,14 +14,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "chart.js": "^4.4.7",
     "dayjs": "^1.11.13",
     "flowbite-react": "^0.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^7.1.5",
     "recharts": "^2.15.1",
-    "simple-datatables": "^10.0.0"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.67",

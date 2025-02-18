@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DarkThemeToggle } from "flowbite-react";
 import es_text from "./text/es.json";
 import FileSelectComponent, {
   FileSelectComponentHandle,
@@ -9,9 +8,11 @@ import FileSelectComponent, {
 import RadioButtonComponent, {
   RadioButtonComponentHandle,
 } from "./components/elements/RadioButtonComponent";
+import "./styles/inicio.css";
 import Stats from "./fichero/Stats";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import HeaderNavComponent from "./components/elements/headerNav";
 
 const Inicio: React.FC = () => {
   const radioButtonRef = useRef<RadioButtonComponentHandle>(null);
@@ -81,18 +82,13 @@ const Inicio: React.FC = () => {
 
   return (
     <div className=" dark:bg-gray-800">
-      {/* Header superior con Toogle para el tema oscuro*/}
-      <header>
-        <DarkThemeToggle />
-      </header>
-      <main className="flex min-h-screen flex-col items-center gap-2">
+      <HeaderNavComponent></HeaderNavComponent>
+    <div  id="inicio">
+      <main className="flex flex-col items-center gap-2">
         {/*Titulo e Imagen principal*/}
         <div className="titulo">
           <img src="/img/whatsapp.svg" id="logo-whatsapp"></img>
-          <h1>
-            Whatsapp <br />
-            <span>Analyzer</span>
-          </h1>
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">{es_text["main-title"]}  <span className="text-blue-600 dark:text-blue-500">{es_text["span-title"]}</span></h1>
         </div>
 
         <FileSelectComponent ref={fileSelectRef}></FileSelectComponent>
@@ -111,6 +107,8 @@ const Inicio: React.FC = () => {
         </div>
       </main>
     </div>
+    </div>
+    
   );
 };
 
