@@ -21,6 +21,9 @@ RUN npm ci --only=production
 # Instalar serve para servir la aplicación
 RUN npm install -g serve
 
+# Copiar los archivos de construcción desde la etapa anterior
+COPY --from=build /app/build ./build
+
 # Exponer el puerto
 EXPOSE 3000
 
