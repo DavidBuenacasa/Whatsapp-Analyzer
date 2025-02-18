@@ -15,7 +15,7 @@ FROM node:lts AS production
 WORKDIR /app
 
 # Instalar solo las dependencias de producción
-RUN npm install --only=production
+RUN npm install 
 
 # Exponer el puerto
 EXPOSE 3000
