@@ -10,17 +10,18 @@ interface PieChartComponentByYear {
 const PieChartComponent: React.FC<PieChartComponentByYear> = ({data,tittle}) => {
   return (
     <div>
-        <h2>{tittle}</h2>
+        <h4 className="mb-3 text-center text-xl font-bold dark:text-white">{tittle}</h4>
         <BarChart data={data} width={500} height={300}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name"/>
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="value" fill="#82ca9d"/>
+        <Bar dataKey="value" fill="#82ca9d" name={tittle}/>
       </BarChart>
     </div>
   );
 };
 
 export default PieChartComponent;
+2

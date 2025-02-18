@@ -1,23 +1,29 @@
-#cuerpoGraficos{
+
+ #cuerpoGraficos{
     display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
+    flex-wrap: calc();
+    flex-direction: column;
+    justify-content: center;
+ } 
+
+ .row1{
+    display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#dashboard-container{
-    display: f;
-}
+ }
 
 .grafico {
+    gap: 10px;
+    border-radius: 20px;
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    margin: 20px;
-    border: 1px solid black;
+    padding: 20px;
+}
+
+.chart1{
+    margin-top: 40px;
 }
 
 .selectTable{
@@ -26,20 +32,26 @@
     margin: 20px;
 }
 
-.grafico > * {
-    flex: 1 1 50%;  /* Cada elemento ocupará el 50% del ancho del contenedor */
-    box-sizing: border-box;  /* Asegura que los bordes y el padding se incluyan en el tamaño total del elemento */
-    overflow: hidden;  /* Evita que el contenido desborde del contenedor */
-}
 
 .pieChart{
     display: flex;
     flex-direction: row;
 }
 
-
 h2{
     text-align: center;
     font-size: 600px;
     color: white ;
+}
+
+
+@media (max-width: 1000px) {
+    .row1{
+        display: block;
+        place-items: center;
+     }
+    .pieChart{
+        display: flex;
+        flex-direction: column;
+     }
 }

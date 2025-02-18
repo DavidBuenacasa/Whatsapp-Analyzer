@@ -29,13 +29,13 @@ const TableComponent: React.FC<TableComponentData> = ({ data}) => (
               {fila}
             </Table.Cell>
 
-            <Table.Cell>{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].mensajesTexto)}</Table.Cell>
-            <Table.Cell>{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].fotos)}</Table.Cell>
-            <Table.Cell>{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].videos)}</Table.Cell>
-            <Table.Cell>{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].mensajesAudio)}</Table.Cell>
-            <Table.Cell>{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].stickers)}</Table.Cell>
-            <Table.Cell>{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].gifs)}</Table.Cell>
-            <Table.Cell>{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].multimediaOmitido)}</Table.Cell>
+            <Table.Cell className="text-center">{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].mensajesTexto)}</Table.Cell>
+            <Table.Cell className="text-center">{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].fotos)}</Table.Cell>
+            <Table.Cell className="text-center">{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].videos)}</Table.Cell>
+            <Table.Cell className="text-center">{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].mensajesAudio)}</Table.Cell>
+            <Table.Cell className="text-center">{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].stickers)}</Table.Cell>
+            <Table.Cell className="text-center">{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].gifs)}</Table.Cell>
+            <Table.Cell className="text-center">{JSON.stringify(data[fila.toLocaleLowerCase() as keyof Meses].multimediaOmitido)}</Table.Cell>
             {/* Añade celdas adicionales aquí si es necesario para otras columnas */}
           </Table.Row>
           

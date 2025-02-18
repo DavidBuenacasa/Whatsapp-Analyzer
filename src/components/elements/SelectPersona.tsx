@@ -21,7 +21,7 @@ const SelectPersona = ({ personas, onPersonaChange }: SelectPersonaData) => {
       <form className="mx-auto max-w-sm">
         <label
           htmlFor="personas"
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          className="mb-2 block text-xl font-medium text-gray-900 dark:text-white"
         >
           {es_text.SelectPersona}
         </label>
