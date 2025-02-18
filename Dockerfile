@@ -18,7 +18,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 # Copiar los archivos de construcción desde la etapa anterior
-COPY --from=build /app/build .
+COPY --from=build /app/dist .
 
 # Exponer el puerto
 EXPOSE 3000
