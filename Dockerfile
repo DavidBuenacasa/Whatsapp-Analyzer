@@ -14,9 +14,6 @@ RUN npm run build
 FROM node:lts AS production
 WORKDIR /app
 
-# Copiar archivos de construcción desde la etapa de construcción
-COPY --from=build /app/build ./build
-
 # Instalar solo las dependencias de producción
 COPY package.json package-lock.json ./
 RUN npm ci --only=production
