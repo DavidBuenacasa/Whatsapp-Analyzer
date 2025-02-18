@@ -16,6 +16,9 @@ WORKDIR /app
 
 # Instalar solo las dependencias de producción
 COPY package.json package-lock.json ./
+COPY public/ /react-docker-example/public
+COPY src/ /react-docker-example/src
+COPY package.json /react-docker-example/
 RUN npm ci --only=production
 
 # Instalar serve para servir la aplicación
