@@ -6,7 +6,7 @@ import SelectYear from "./components/elements/SelectYear";
 import "./styles/dashboard.css";
 import { useState } from "react";
 import PieChartComponent from "./components/charts/PieChartComponent";
-import { TableComponent } from "./components/charts/TableComponent";
+import TableComponent from "./components/charts/TableComponent";
 import HeaderNavComponent from "./components/elements/headerNav";
 import SelectPersona from "./components/elements/SelectPersona";
 
@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
   const [selectedYearBarchart, setSelectedYearBarChart] = useState(yearList[0]);
   const [selectedYearPieChart, setSelectedYearPieChart] = useState(yearList[0]); // Estado del año seleccionado
   const [selectedYearTable, setSelectedYearTable] = useState(yearList[0]); // Estado del año seleccionado
-  const [selectedPersonaTable, setSelectedPersonaTable] = useState(yearList[0]); // Estado del año seleccionado
+  const [selectedPersonaTable, setSelectedPersonaTable] = useState(personasList[0]); // Estado del año seleccionado
 
   const handleYearChangeBarchart = (year: string) => {
     setSelectedYearBarChart(year);
@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
     setSelectedYearTable(year);
   }
   const handlePersonaTable= (persona: string) => {
-    setSelectedYearTable(persona);
+    setSelectedPersonaTable(persona);
   }
 
   return (
@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
         ></SelectPersona>
           </div>
 
-        <TableComponent></TableComponent>
+        <TableComponent data={buscadorDatos.tableChart(jsonObject,selectedYearTable,selectedPersonaTable)}></TableComponent>
 
         </div>
       </main>

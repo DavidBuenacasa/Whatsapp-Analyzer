@@ -13,13 +13,11 @@ class Stats {
   private fichero: File | null;
   private dispositivo: string;
   private stats: Registro[];
-  private ficheroLeido;
 
   constructor(fichero: File | null, dispositivo: string) {
     this.fichero = fichero;
     this.dispositivo = dispositivo;
     this.stats = [];
-    this.ficheroLeido = false;
   }
 
   async analizar() {
@@ -32,7 +30,6 @@ class Stats {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        this.ficheroLeido = true;
         resolve();
       };
 
@@ -78,7 +75,7 @@ class Stats {
           });
         } else {
           lines.forEach((line) => {
-            // Lógica para Android aquí...
+            console.log("Por desarrollar" + line)
           });
         }
       };
@@ -123,7 +120,7 @@ class Stats {
 
     const añoRegistro = fechaHora.fecha.split("/")[2];
     const mesRegistro = this.numeroAMes(Number(mesAux));
-    const diaRegistro = fechaHora.fecha.split("/")[0];
+    //const diaRegistro = fechaHora.fecha.split("/")[0];
 
     const aux = this.stats.find(
       (registro) => registro.año === añoRegistro && registro.nombre === persona,

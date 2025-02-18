@@ -176,6 +176,17 @@ class BuscadorDatos {
     return sumatorio;
   }
 
+
+  public tableChart(jsonObject:Registro[],año:string,persona:string){
+
+    const aux = jsonObject.filter((registro) => registro.año === año && registro.nombre===persona);
+
+
+    return aux[0].mensajes[0];
+  }
+
+
+
   public personasList(jsonObject: Registro[]) {
     const personas = Array.from(
       new Set(jsonObject.map((registro) => registro.nombre)),
