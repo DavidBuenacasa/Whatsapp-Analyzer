@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "server": "node dist/server.js",
+    "server": "node dist/server/server.js",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "eslint .",

@@ -1,4 +1,3 @@
-"use client";
 
 import { Table } from "flowbite-react";
 import es_text from "../../text/es.json";
