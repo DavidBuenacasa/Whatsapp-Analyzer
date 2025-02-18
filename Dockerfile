@@ -15,16 +15,17 @@ FROM node:lts AS production
 WORKDIR /app
 
 # Copiar archivos de construcción desde la etapa de construcción
-COPY --from=build /app/dist ./dist
-
-# Copiar package.json y package-lock.json
-COPY package.json package-lock.json ./
+COPY --from=build /app/build ./build
 
 # Instalar solo las dependencias de producción
+COPY package.json package-lock.json ./
 RUN npm ci --only=production
+
+# Instalar serve para servir la aplicación
+RUN npm install -g serve
 
 # Exponer el puerto
 EXPOSE 3000
 
 # Comando para iniciar el servidor
-CMD ["npm", "run", "server"]
+CMD ["serve", "-s", "build", "-l", "3000"]
