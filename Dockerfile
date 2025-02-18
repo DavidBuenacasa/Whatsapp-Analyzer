@@ -14,8 +14,14 @@ RUN npm run build
 FROM node:lts AS production
 WORKDIR /app
 
+# Copiar archivos de construcción desde la etapa de construcción
+COPY --from=build /app/dist ./dist
+
+# Copiar package.json y package-lock.json
+COPY package.json package-lock.json ./
+
 # Instalar solo las dependencias de producción
-RUN npm install 
+RUN npm ci --only=production
 
 # Exponer el puerto
 EXPOSE 3000
