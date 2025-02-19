@@ -10,10 +10,10 @@ class RegistroIphone {
   }
 
   //Devuelve La persona del Registro
-  getPersona() {
-    const splitLinea = this.linea.split(" ")[2];
+   getPersona() {
+    const splitLinea = this.linea.split(":")[2];
 
-    const persona = splitLinea.slice(0, -1);
+    const persona = splitLinea.split("]")[1].trim()
 
     return persona;
   }

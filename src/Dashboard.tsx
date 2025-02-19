@@ -95,8 +95,8 @@ const Dashboard: React.FC = () => {
             ></PieChartComponent>
           </div>
         </div>
-        <div className="grafico">
-          <div className="selectTable">
+        <div className="p-20 ">
+          <div className="flex justify-center gap-10 p-10">
             <SelectYear
               years={yearList}
               onYearChange={handleYearTable}
@@ -106,8 +106,8 @@ const Dashboard: React.FC = () => {
               onPersonaChange={handlePersonaTable}
             ></SelectPersona>
           </div>
-          <div className="grafico tableComponent">
-            <TableComponent
+          <div>
+          <TableComponent
               data={buscadorDatos.tableChart(
                 jsonObject,
                 selectedYearTable,
@@ -115,6 +115,8 @@ const Dashboard: React.FC = () => {
               )}
             ></TableComponent>
           </div>
+
+          
         </div>
       </main>
     </div>

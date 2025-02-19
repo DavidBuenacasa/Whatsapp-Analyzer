@@ -26,11 +26,6 @@
     margin-top: 40px;
 }
 
-.selectTable{
-    display: flex;
-    gap: 50px;
-    margin: 20px;
-}
 
 
 .pieChart{
@@ -38,11 +33,6 @@
     flex-direction: row;
 }
 
-h2{
-    text-align: center;
-    font-size: 600px;
-    color: white ;
-}
 
 
 @media (max-width: 1000px) {
