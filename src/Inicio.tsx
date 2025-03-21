@@ -10,15 +10,19 @@ import RadioButtonComponent, {
 } from "./components/elements/RadioButtonComponent";
 import "./styles/inicio.css";
 import Stats from "./fichero/Stats";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderNavComponent from "./components/elements/headerNav";
+import { Alert } from "flowbite-react";
+import { HiInformationCircle } from "react-icons/hi";
 
-const Inicio: React.FC = () => {
+function Inicio() {
   const radioButtonRef = useRef<RadioButtonComponentHandle>(null);
   const fileSelectRef = useRef<FileSelectComponentHandle>(null);
   const navigate = useNavigate();
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [mensajeAlert, setMensajeAlert] = useState("");
   {
     /*Al hacer click sobre analizar se comprobara que todos los parametros son correctos*/
   }
@@ -28,7 +32,9 @@ const Inicio: React.FC = () => {
     let fileSelected: File | null = new File([], "filename");
     let radioOption: string = "";
 
-    {/*Se comprueba que se ha seleccionado un RadioButton*/}
+    {
+      /*Se comprueba que se ha seleccionado un RadioButton*/
+    }
 
     if (radioButtonRef.current) {
       if (radioButtonRef.current.checkRadioButtonSelected()) {
@@ -39,7 +45,9 @@ const Inicio: React.FC = () => {
       }
     }
 
-    {/*Se comprueba que se ha seleccionado un Arhivo valido .txt*/}
+    {
+      /*Se comprueba que se ha seleccionado un Arhivo valido .txt*/
+    }
 
     if (fileSelectRef.current) {
       if (fileSelectRef.current.checkFile()) {
@@ -50,47 +58,71 @@ const Inicio: React.FC = () => {
       }
     }
 
-    {/*Si hay un error se procedera a mostrar un alert con el mensaje de error*/}
+    {
+      /*Si hay un error se procedera a mostrar un alert con el mensaje de error*/
+    }
 
     if (error) {
       modalError(messageError);
     } else {
-      {/*Si todo funciona bien se analizara el archivo*/}
+      {
+        /*Si todo funciona bien se analizara el archivo*/
+      }
       analizar(fileSelected, radioOption);
     }
   }
 
-  {/*Muestra un Alert con un error*/}
+  {
+    /*Muestra un Alert con un error*/
+  }
   function modalError(message: string) {
-    alert(message);
+    setMensajeAlert(message);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false); // Lo oculta tras 3 segundos (3000 ms)
+    }, 3000);
   }
 
-  {/*Analiza el Archivo y cambia de a la pestaña de Dashboard*/}
+  {
+    /*Analiza el Archivo y cambia de a la pestaña de Dashboard*/
+  }
   async function analizar(file: File | null, radioOption: string) {
-
-    {/*Crea un objeto Stats que leera el archivo y procesara los datos*/}
+    {
+      /*Crea un objeto Stats que leera el archivo y procesara los datos*/
+    }
     const stats = new Stats(file, radioOption);
     await stats.analizar();
 
-    {/*Recogemos los datos en JSON*/}
-    const jsonData =stats.obtenerData();
+    {
+      /*Recogemos los datos en JSON*/
+    }
+    const jsonData = stats.obtenerData();
 
-    {/*Se cambia a la pestaña Dashboard*/}
+    {
+      /*Se cambia a la pestaña Dashboard*/
+    }
     navigate("/dashboard", { state: jsonData });
-    
   }
 
   return (
-    <div className=" dark:bg-gray-800">
-      <HeaderNavComponent></HeaderNavComponent>
-    <div  id="inicio">
-      <main className="flex flex-col items-center gap-2">
+    <div>
+      <HeaderNavComponent />
+      <div className="flex h-screen w-full flex-col items-center justify-center gap-2">
         {/*Titulo e Imagen principal*/}
         <div className="titulo">
           <img src="/img/whatsapp.svg" id="logo-whatsapp"></img>
-          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">{es_text["main-title"]}  <span className="text-blue-600 dark:text-blue-500">{es_text["span-title"]}</span></h1>
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+            {es_text["main-title"]}{" "}
+            <span className="text-blue-600 dark:text-blue-500">
+              {es_text["span-title"]}
+            </span>
+          </h1>
         </div>
-
+        {showAlert && (
+          <Alert color="failure" rounded onDismiss={() => setShowAlert(false)} icon={HiInformationCircle} className="flex items-center justify-between m-5">
+            <span className="font-medium">Info alert!</span>{mensajeAlert}
+          </Alert>
+        )}
         <FileSelectComponent ref={fileSelectRef}></FileSelectComponent>
 
         <RadioButtonComponent ref={radioButtonRef}></RadioButtonComponent>
@@ -104,12 +136,13 @@ const Inicio: React.FC = () => {
           >
             Analizar
           </button>
+
         </div>
-      </main>
+
+
+      </div>
     </div>
-    </div>
-    
   );
-};
+}
 
 export default Inicio;

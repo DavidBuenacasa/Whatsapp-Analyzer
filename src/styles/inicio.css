@@ -2,14 +2,6 @@ h1 {
     font-size: 60px;
     font-family: "Helvetica";
   }
-
-  #inicio{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    max-height: 100vh;
-  }
   
   #logo-whatsapp {
     width: 150px;

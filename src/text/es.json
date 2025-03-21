@@ -37,7 +37,11 @@
             "gifs":"Gifs",
             "multimedia-omiitdo":"Multimedia Omitido"
         }
-    }
+    },
 
+    "error404":"Pagina no encontrada",
+    "inicioHome":"Ir a Inicio"
+
+    
     
 }

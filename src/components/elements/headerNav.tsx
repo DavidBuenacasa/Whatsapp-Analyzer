@@ -8,7 +8,7 @@ const HeaderNavComponent: React.FC = () => {
   return (
     <div>
       {/* Header superior con Toogle para el tema oscuro */}
-      <header className="flex justify-around ">
+      <header className="flex justify-end p-4">
         {location.pathname === "/dashboard" && <ButtonHome />}
         <DarkThemeToggle />
       </header>
