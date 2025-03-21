@@ -119,7 +119,7 @@ function Inicio() {
           </h1>
         </div>
         {showAlert && (
-          <Alert color="failure" rounded onDismiss={() => setShowAlert(false)} icon={HiInformationCircle} className="flex items-center justify-between m-5">
+          <Alert color="failure" rounded onDismiss={() => setShowAlert(false)} icon={HiInformationCircle} className="m-5 flex items-center justify-between">
             <span className="font-medium">Info alert!</span>{mensajeAlert}
           </Alert>
         )}
