@@ -1,34 +1,29 @@
-# Etapa de construcción
-FROM node:lts AS build
+# --- ETAPA 1: Construcción del Frontend ---
+FROM node:18-alpine AS build-stage
 WORKDIR /app
-
-# Instalar dependencias
-COPY package.json package-lock.json ./
-RUN npm install
-
-# Copiar el código fuente y construir la aplicación
+COPY package*.json ./
+RUN npm ci
 COPY . .
+# Compila el frontend (genera la carpeta /dist)
 RUN npm run build
 
-# Etapa de producción
-FROM node:lts AS production
+# --- ETAPA 2: Producción ---
+FROM node:18-alpine AS production-stage
 WORKDIR /app
 
-# Instalar solo las dependencias de producción
-COPY package.json package-lock.json ./
-COPY public/ /react-docker-example/public
-COPY src/ /react-docker-example/src
-COPY package.json /react-docker-example/
-RUN npm ci --only=production
+# Solo instalamos dependencias de producción
+COPY package*.json ./
+RUN npm ci --omit=dev && npm cache clean --force
 
-# Instalar serve para servir la aplicación
-RUN npm install -g serve
+# Copiamos el servidor (Backend)
+COPY server/ ./server/
 
-# Copiar los archivos de construcción desde la etapa anterior
-COPY --from=build /app/dist ./build
+# Copiamos el frontend compilado (Frontend)
+# Asegúrate de que tu server.js sirva la carpeta 'dist'
+COPY --from=build-stage /app/dist ./dist
 
-# Exponer el puerto
+# Exponemos el puerto que use tu server.js (ajusta si es necesario)
 EXPOSE 3000
 
-# Comando para iniciar el servidor
-CMD ["serve", "-s", "build", "-l", "3000"]
+# Ejecutamos el servidor
+CMD ["node", "server/server.js"]
