@@ -1,34 +1,23 @@
-# Etapa de construcción
-FROM node:lts AS build
+# --- ETAPA 1: Construcción (Build) ---
+FROM node:lts-alpine AS builder
 WORKDIR /app
 
-# Instalar dependencias
-COPY package.json package-lock.json ./
-RUN npm install
+# Instalación limpia de dependencias
+COPY package*.json ./
+RUN npm ci
 
-# Copiar el código fuente y construir la aplicación
+# Copia de código y generación del bundle (dist)
 COPY . .
 RUN npm run build
 
-# Etapa de producción
-FROM node:lts AS production
-WORKDIR /app
+# --- ETAPA 2: Producción (Servidor ligero) ---
+FROM nginx:alpine AS production
 
-# Instalar solo las dependencias de producción
-COPY package.json package-lock.json ./
-COPY public/ /react-docker-example/public
-COPY src/ /react-docker-example/src
-COPY package.json /react-docker-example/
-RUN npm ci --only=production
+# Copiamos solo los archivos estáticos compilados
+# Nota: Si tu build genera la carpeta 'build' en lugar de 'dist', ajusta la ruta
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Instalar serve para servir la aplicación
-RUN npm install -g serve
+# Exponer puerto estándar web
+EXPOSE 80
 
-# Copiar los archivos de construcción desde la etapa anterior
-COPY --from=build /app/dist ./build
-
-# Exponer el puerto
-EXPOSE 3000
-
-# Comando para iniciar el servidor
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["nginx", "-g", "daemon off;"]
