@@ -1,8 +1,10 @@
 {
-    "main-title":"Whastsapp",
+    "main-title":"Chat",
     "span-title":"Analyzer",
+    "supports-platadormas":"Soporta las siguientes plataformas:",
+    "platadormas-list":"WhatsApp Messenger (iOS)",
     "input-file-label":"Seleccione un archivo",
-    "radioButton-device":"Desde que dispositivo utilizas Whastsapp",
+    "radioButton-device":"Desde Que dispositivo utilizas Whastsapp",
     "SelectYear":"Selecciona un Año:",
     "SelectYearPlaceholder":"Años",
     "totalSelect":"Total",

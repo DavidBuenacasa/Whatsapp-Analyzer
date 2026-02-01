@@ -4,7 +4,6 @@ import {
   useImperativeHandle,
   useState,
 } from "react";
-import es_text from "../../text/es.json";
 
 // Definimos los métodos que queremos exponer
 export interface RadioButtonComponentHandle {
@@ -45,11 +44,11 @@ const RadioButtonComponent = forwardRef<RadioButtonComponentHandle>(
     }));
 
     return (
-      <div>
+      <div>{/*
         <h3 className="mb-5 text-xl font-medium text-gray-900 dark:text-white">
           {es_text["radioButton-device"]}
-        </h3>
-        <ul className="grid w-full items-center justify-center gap-6 md:grid-cols-2">
+        </h3>*/}
+        <ul className="grid w-full items-center justify-center gap-6">
           <li className="device-div">
             <input
               type="radio"
@@ -85,6 +84,7 @@ const RadioButtonComponent = forwardRef<RadioButtonComponentHandle>(
               </div>
             </label>
           </li>
+          {/*
           <li className="device-div">
             <input
               type="radio"
@@ -120,7 +120,7 @@ const RadioButtonComponent = forwardRef<RadioButtonComponentHandle>(
                 <div className="w-full text-lg font-semibold">Android</div>
               </div>
             </label>
-          </li>
+          </li>*/}
         </ul>
       </div>
     );

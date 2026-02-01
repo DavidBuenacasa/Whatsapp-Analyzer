@@ -118,6 +118,15 @@ function Inicio() {
             </span>
           </h1>
         </div>
+        {/* Plataformas soportadas (Texto más pequeño) */}
+    <div className="flex flex-col items-center gap-1">
+      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 md:text-base">
+        {es_text["supports-platadormas"]}
+      </p>
+      <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
+        {es_text["platadormas-list"]}
+      </span>
+    </div>
         {showAlert && (
           <Alert color="failure" rounded onDismiss={() => setShowAlert(false)} icon={HiInformationCircle} className="m-5 flex items-center justify-between">
             <span className="font-medium">Info alert!</span>{mensajeAlert}
